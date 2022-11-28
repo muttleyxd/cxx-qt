@@ -12,6 +12,20 @@ mod ffi {
         type QUrl = cxx_qt_lib::QUrl;
     }
 
+    #[cxx_qt::qobject]
+    pub struct NestedProperty {
+        #[qproperty]
+        something: bool
+    }
+
+    impl Default for NestedProperty {
+        fn default() -> Self {
+            Self {
+                something: false
+            }
+        }
+    }
+
     // ANCHOR: book_properties_struct
     #[cxx_qt::qobject]
     pub struct RustProperties {
@@ -26,6 +40,9 @@ mod ffi {
 
         #[qproperty]
         status_message: QString,
+
+        #[qproperty]
+        nested_property: NestedProperty
     }
     // ANCHOR_END: book_properties_struct
 
